@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::create('usersinfo', function(Blueprint $table){
-            $table->id(); 
+            $table->uuid('id')->primary(); 
             $table->string('first_name');
             $table->string('last_name');
             $table->enum('sex', ['Male', 'Female']);
@@ -33,5 +33,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('usersinfo');
     }
 };

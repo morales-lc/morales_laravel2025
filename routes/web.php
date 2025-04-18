@@ -10,10 +10,10 @@ Route::get('/', function () {
 
 
 Route::get('/login', function () {
-    return view('login'); // Create this blade file
+    return view('login'); 
 })->name('login');
 
-Route::post('/login', function (\Illuminate\Http\Request $request) {
+Route::post('/login', function (Request $request) {
     $tempUsername = 'john';
     $tempPass = 'doe';
 

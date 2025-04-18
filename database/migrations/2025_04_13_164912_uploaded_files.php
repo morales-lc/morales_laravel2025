@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('original_filename');
             $table->string('filename');
             $table->string('type');
-            $table->unsignedBigInteger('uploaded_by');
+            $table->uuid('uploaded_by');
             $table->timestamps();
 
             $table->foreign('uploaded_by')->references('id')->on('usersinfo');
@@ -29,5 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('uploads');
     }
 };
