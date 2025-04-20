@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,16 +17,8 @@ Route::get('/login', function () {
     return view('login'); 
 })->name('login');
 
-Route::post('/login', function (Request $request) {
-    $tempUsername = 'john';
-    $tempPass = 'doe';
-
-    if ($request->username === $tempUsername && $request->password === $tempPass) {
-        return redirect()->route('dashboard');
-    }
-
-    return redirect()->route('login')->withErrors(['Invalid credentials']);
-});
+//login Controller
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
 Route::get('/dashboard', function (){
@@ -33,6 +29,8 @@ Route::get('/register', function () {
     return view('registration');
 })->name('register');
 
+//REGISTRATION CONTROLLER --  TODO: MOVE TO A CONTROLLER FOR A BETTER CODE AYAW KALIMTA.
+
 Route::post('/register', function (Request $request) {
     // not including password
     $data = $request->except('password');
@@ -40,6 +38,16 @@ Route::post('/register', function (Request $request) {
     return view('registration-success', ['data' => $data]);
 });
 
-Route::get('/user', function (){
-    return view('usersettings');
-})->name('user');
+
+//Controller for editing name and username
+Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
+
+
+//Controller for changeing password
+
+Route::get('/edit-password', [PasswordController::class, 'edit'])->name('password.edit');
+Route::post('/edit-password', [PasswordController::class, 'update'])->name('password.update');
+
+//Controller route for display user
+Route::get('/users', [UserController::class, 'index'])->name('user.list');
