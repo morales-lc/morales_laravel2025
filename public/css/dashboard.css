@@ -1,26 +1,46 @@
 body {
-            background-color: #F2EFE7;
-        }
+    background-color: #F2EFE7;
+}
 
-        .navbar {
-            background-color: #48A6A7;
-        }
+.navbar {
+    background-color: #48A6A7;
+}
 
-        .navbar-brand,
-        .nav-link {
-            color: white !important;
-        }
+.navbar-brand,
+.nav-link {
+    color: white !important;
+}
 
-        .logout-btn {
-            background-color: #2973B2;
-            border-color: #2973B2;
-        }
+.nav-link:hover {
+    color: #D0EBF2 !important;
+}
 
-        .logout-btn:hover {
-            background-color: #9ACBD0;
-            border-color: #9ACBD0;
-        }
+.logout-btn {
+    background-color: #2973B2;
+    border-color: #2973B2;
+    color: white !important;
+}
 
-        .container {
-            margin-top: 20px;
-        }
+.logout-btn:hover {
+    background-color: #9ACBD0;
+    border-color: #9ACBD0;
+    color: white !important;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Ensure Logout button stays aligned nicely on small screens */
+.logout-btn {
+    margin-left: 10px;
+}
+
+/* Keep burger icon white */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
