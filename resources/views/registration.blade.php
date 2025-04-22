@@ -19,6 +19,11 @@
         </div>
 
     </nav>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
 
     <div class="container">
@@ -26,15 +31,11 @@
             <div class="col-md-6">
                 <div class="card p-4 shadow-sm">
                     <h2 class="mb-3">Register</h2>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register.save') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="firstname" class="form-label">First Name</label>
                             <input type="text" class="form-control" id="firstname" name="firstname" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="middlename" class="form-label">Middle Name</label>
-                            <input type="text" class="form-control" id="middlename" name="middlename">
                         </div>
                         <div class="mb-3">
                             <label for="lastname" class="form-label">Last Name</label>

@@ -11,10 +11,20 @@
     </style>
 </head>
 <body>
+<!--TODO: BUHATA NGA MAG DISPLAY UG SUCCESS MESSAGE LATERS!!!!!! -->
+<!--TODO: BUHATA NGA MAG DISPLAY UG SUCCESS MESSAGE LATERS!!!!!! -->
+<!--TODO: BUHATA NGA MAG DISPLAY UG SUCCESS MESSAGE LATERS!!!!!! -->
+
+@if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+@endif
     <div class="login-container">
     <form method="POST" action="{{ route('login') }}">
     @csrf
     <h2>Login</h2>
+
 
     <div class="form-group">
         <label for="username">Username</label>

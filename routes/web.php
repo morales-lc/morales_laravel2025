@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
@@ -31,12 +32,14 @@ Route::get('/register', function () {
 
 //REGISTRATION CONTROLLER --  TODO: MOVE TO A CONTROLLER FOR A BETTER CODE AYAW KALIMTA.
 
-Route::post('/register', function (Request $request) {
-    // not including password
-    $data = $request->except('password');
+Route::post('/register', [RegistrationController:: class, 'save'])->name('register.save');
 
-    return view('registration-success', ['data' => $data]);
-});
+// Route::post('/register', function (Request $request) {
+//     // not including password
+//     $data = $request->except('password');
+
+//     return view('registration-success', ['data' => $data]);
+// });
 
 
 //Controller for editing name and username
