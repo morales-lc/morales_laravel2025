@@ -54,3 +54,5 @@ Route::post('/edit-password', [PasswordController::class, 'update'])->name('pass
 
 //Controller route for display user
 Route::get('/users', [UserController::class, 'index'])->name('user.list');
+
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');

@@ -17,7 +17,6 @@
 
     <div class="container">
         <h2>Welcome to Your Dashboard,  {{ session('user')->first_name }}!</h2>
-        <p>Here is where you can manage your account and settings.</p>
     </div>
 
 

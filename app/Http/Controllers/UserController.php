@@ -32,4 +32,30 @@ class UserController extends Controller
 
     return view('user-list', compact('users'));
 }
+
+
+public function destroy($id)
+{
+    $currentUser = session('user');
+
+    // Only allow admin to delete users
+    if (!$currentUser || $currentUser->user_type !== 'Admin') {
+        abort(403, 'Access denied');
+    }
+
+    // Don't allow deleting yourself
+    if ($currentUser->id == $id) {
+        return back()->withErrors(['delete' => 'You cannot delete your own account.']);
+    }
+
+    $user = Usersinfo::find($id);
+
+    if ($user) {
+        $user->delete();
+        return back()->with('success', 'User deleted successfully.');
+    }
+
+    return back()->withErrors(['delete' => 'User not found.']);
+}
+
 }
