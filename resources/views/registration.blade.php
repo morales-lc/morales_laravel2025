@@ -35,38 +35,72 @@
                         @csrf
                         <div class="mb-3">
                             <label for="firstname" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname" required>
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror"
+                                id="firstname" name="firstname" value="{{ old('firstname') }}">
+                            @error('firstname')
+                                <div class="invalid-feedback">{{ $message }}</div>  
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="lastname" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname" required>
+                            <input type="text" class="form-control @error('lastname') is-invalid @enderror"
+                                id="lastname" name="lastname" value="{{ old('lastname') }}">
+                            @error('lastname')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="bod" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" id="bod" name="bod" required>
+                            <input type="date" class="form-control @error('bod') is-invalid @enderror" id="bod"
+                                name="bod" value="{{ old('bod') }}">
+                            @error('bod')   
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
                         </div>
                         <div class="mb-3">
                             <label for="sex" class="form-label">Sex</label>
-                            <select class="form-control" id="sex" name="sex" required>
-                                <option value="" selected disabled>Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                            <select class="form-control @error('sex') is-invalid @enderror" id="sex" name="sex">
+                                <option value="" disabled {{ old('sex') ? '' : 'selected' }}>Select</option>
+                                <option value="Male" {{ old('sex') == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ old('sex') == 'Female' ? 'selected' : '' }}>Female</option>
                             </select>
+                            @error('sex')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                id="username" name="username" value="{{ old('username') }}">
+                            @error('username')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                id="password" name="password">
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                            <input type="checkbox" class="form-check-input @error('terms') is-invalid @enderror"
+                                id="terms" name="terms" {{ old('terms') ? 'checked' : '' }}>
+                                @error('terms')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
                             <label class="form-check-label" for="terms">I agree with the Privacy Policy and Terms and
                                 Conditions</label>
                         </div>
