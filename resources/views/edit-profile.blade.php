@@ -13,10 +13,10 @@
 
     @if (session('success') || $errors->any())
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
-            <div class="toast align-items-center text-white {{ session('success') ? 'bg-success' : 'bg-danger' }} border-0 show"
-                role="alert">
+            <div class="toast fade show shadow-lg text-white {{ session('success') ? 'bg-success' : 'bg-danger' }}"
+                role="alert" style="min-width: 300px;">
                 <div class="d-flex">
-                    <div class="toast-body">
+                    <div class="toast-body fs-6">
                         @if(session('success'))
                             {{ session('success') }}
                         @else

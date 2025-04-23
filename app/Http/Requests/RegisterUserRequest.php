@@ -22,8 +22,8 @@ class RegisterUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstname' => 'required|string|max:50',
-            'lastname' => 'required|string|max:50',
+            'firstname' => 'required|string|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
+            'lastname' => 'required|string|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
             'bod' => 'required|date',
             'sex' => 'required|in:Male,Female',
             'email' => 'required|email|unique:usersinfo,email',
@@ -32,4 +32,22 @@ class RegisterUserRequest extends FormRequest
             'terms' => 'accepted',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'firstname.regex' => 'The first name may only contain letters, spaces, hyphens, and apostrophes.',
+            'lastname.regex' => 'The last name may only contain letters, spaces, hyphens, and apostrophes.',
+        ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'firstname' => ucwords(strtolower(trim($this->firstname))),
+            'lastname' => ucwords(strtolower(trim($this->lastname))),
+            'username' => trim($this->username),
+        ]);
+    }
+    
 }
