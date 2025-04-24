@@ -7,6 +7,28 @@
     <title>Registration</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/registration.css">
+
+    <style>
+        #password-strength {
+            font-size: 0.9rem;
+        }
+
+        .strength-weak {
+            color: #dc3545;
+        }
+
+        /* red */
+        .strength-medium {
+            color: #ffc107;
+        }
+
+        /* yellow */
+        .strength-strong {
+            color: #28a745;
+        }
+
+        /* green */
+    </style>
 </head>
 
 
@@ -38,7 +60,7 @@
                             <input type="text" class="form-control @error('firstname') is-invalid @enderror"
                                 id="firstname" name="firstname" value="{{ old('firstname') }}">
                             @error('firstname')
-                                <div class="invalid-feedback">{{ $message }}</div>  
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
@@ -53,7 +75,7 @@
                             <label for="bod" class="form-label">Date of Birth</label>
                             <input type="date" class="form-control @error('bod') is-invalid @enderror" id="bod"
                                 name="bod" value="{{ old('bod') }}">
-                            @error('bod')   
+                            @error('bod')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
 
@@ -90,6 +112,7 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 id="password" name="password">
+                            <div id="password-strength" class="mt-1 fw-semibold"></div>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -97,7 +120,7 @@
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input @error('terms') is-invalid @enderror"
                                 id="terms" name="terms" {{ old('terms') ? 'checked' : '' }}>
-                                @error('terms')
+                            @error('terms')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
 
@@ -115,6 +138,8 @@
 
         </div>
     </div>
+    <script src="{{ asset('js/password-strength.js') }}"></script>
+
 </body>
 
 </html>

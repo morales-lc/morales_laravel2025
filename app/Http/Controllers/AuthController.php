@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usersinfo;
@@ -9,25 +10,19 @@ class AuthController extends Controller
 {
     //
 
-    public function login(Request $request)
-{
-    $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-    ]);
+    public function login(LoginRequest $request)
+    {
+        $user = Usersinfo::where('username', $request->username)->first();
 
-    // Find user by username
-    $user = Usersinfo::where('username', $request->username)->first();
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                session(['user' => $user]);
+                return redirect()->route('dashboard');
+            } else {
+                return back()->withErrors(['password' => 'Incorrect password.'])->withInput();
+            }
+        }
 
-    if ($user && Hash::check($request->password, $user->password)) {
-        // Store user info in session manually
-        session(['user' => $user]);
-
-        return redirect()->route('dashboard');
+        return back()->withErrors(['username' => 'Username not found.'])->withInput();
     }
-
-    return back()->withErrors([
-        'username' => 'Invalid username or password.',
-    ]);
-}
 }

@@ -8,7 +8,8 @@
     }
 
 
-    .navbar-brand, .nav-link {
+    .navbar-brand,
+    .nav-link {
         color: white !important;
         transition: background-color 0.3s ease, color 0.3s ease;
         padding: 8px 12px;
@@ -73,7 +74,9 @@
                 <li class="nav-item"><a class="nav-link" href="#">Uploaded Files</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('profile.edit') }}">Edit Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('password.edit') }}">Change Password</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('user.list') }}">Users</a></li>
+                @if(session('user') && session('user')->user_type === 'Admin')
+                    <li class="nav-item"><a class="nav-link" href="{{ route('user.list') }}">Users</a></li>
+                @endif
             </ul>
         </div>
         <div class="d-flex">
