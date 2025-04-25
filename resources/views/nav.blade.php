@@ -71,7 +71,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Uploaded Files</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ route('upload.index') }}">Uploaded Files</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('profile.edit') }}">Edit Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('password.edit') }}">Change Password</a></li>
                 @if(session('user') && session('user')->user_type === 'Admin')

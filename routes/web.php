@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UploadController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,3 +57,14 @@ Route::post('/edit-password', [PasswordController::class, 'update'])->name('pass
 Route::get('/users', [UserController::class, 'index'])->name('user.list');
 
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+
+//Controller for upload view and uploading
+Route::middleware([])->group(function () {
+    Route::get('/upload', [UploadController::class, 'create'])->name('upload.create');
+    Route::post('/upload', [UploadController::class, 'store'])->name('upload.store');
+    Route::get('/my-uploads', [UploadController::class, 'index'])->name('upload.index');
+    Route::get('/download/{upload}', [UploadController::class, 'download'])->name('upload.download');
+    Route::delete('/upload/{upload}', [UploadController::class, 'destroy'])->name('upload.destroy');
+});
+

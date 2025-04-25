@@ -28,7 +28,7 @@ class UserController extends Controller
         $query->where('email', 'like', "%{$request->email}%");
     }
 
-    $users = $query->paginate(15)->withQueryString();
+    $users = $query->paginate(10)->withQueryString();
 
     return view('user-list', compact('users'));
 }
