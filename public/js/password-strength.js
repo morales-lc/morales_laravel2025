@@ -29,3 +29,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+
+const confirmInput = document.getElementById('password_confirmation');
+const matchIndicator = document.getElementById('password-match');
+
+if (passwordInput && confirmInput && matchIndicator) {
+    function checkMatch() {
+        const passwordVal = passwordInput.value;
+        const confirmVal = confirmInput.value;
+
+        matchIndicator.className = '';
+        if (!confirmVal) {
+            matchIndicator.textContent = '';
+        } else if (passwordVal === confirmVal) {
+            matchIndicator.textContent = '✅ Passwords match';
+            matchIndicator.classList.add('text-success');
+        } else {
+            matchIndicator.textContent = '❌ Passwords do not match';
+            matchIndicator.classList.add('text-danger');
+        }
+    }
+
+    passwordInput.addEventListener('input', checkMatch);
+    confirmInput.addEventListener('input', checkMatch);
+}
+
+
+

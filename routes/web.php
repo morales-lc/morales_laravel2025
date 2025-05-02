@@ -8,6 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,21 +18,31 @@ Route::get('/', function () {
 
 
 
-Route::get('/login', function () {
-    return view('login'); 
-})->name('login');
+// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
-//login Controller
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+// //login Controller
+// Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    Route::get('/register', function () {
+        return view('registration');
+    })->name('register');
+
+    Route::post('/register', [RegistrationController::class, 'save'])->name('register.save');
+});
 
 
 Route::get('/dashboard', function (){
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/register', function () {
-    return view('registration');
-})->name('register');
+// Route::get('/register', function () {
+//     return view('registration');
+// })->name('register');
 
 //REGISTRATION CONTROLLER --  TODO: MOVE TO A CONTROLLER FOR A BETTER CODE AYAW KALIMTA.
 
@@ -68,3 +81,17 @@ Route::middleware([])->group(function () {
     Route::delete('/upload/{upload}', [UploadController::class, 'destroy'])->name('upload.destroy');
 });
 
+
+
+Route::get('/verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('verify.email');
+
+
+
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+
+
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');

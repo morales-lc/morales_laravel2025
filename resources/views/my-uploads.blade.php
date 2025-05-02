@@ -56,8 +56,8 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-hover table-striped align-middle">
-                <thead class="table-light">
+            <table class="table table-hover table-striped align-middle bg-white">
+                <thead class=" table-primary text-center">
                     <tr>
                         <th>Filename</th>
                         <th>Type</th>
