@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
 </head>
 
 <body>

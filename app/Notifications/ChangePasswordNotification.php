@@ -7,17 +7,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ResetPasswordNotification extends Notification
+class ChangePasswordNotification extends Notification
 {
-    use Queueable;
-    private $token;
+    
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
+        //
     }
 
     /**
@@ -35,13 +34,13 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $url = url("/reset-password/{$this->token}");
-
+        $timestamp = date('F j, Y g:i A');
         return (new MailMessage)
-            ->subject('Reset Your Password')
-            ->line('Click the button below to reset your password.')
-            ->action('Reset Password', $url)
-            ->line('This link will expire in 60 minutes.');
+        ->subject('Your Password Has Been Changed')
+        ->greeting('Hello!')
+        ->line('This is a confirmation that your password has been successfully changed.')
+        ->line('Time of change: ' . $timestamp)
+        ->line('If you did not request this change, please contact our support team immediately.');
     }
 
     /**

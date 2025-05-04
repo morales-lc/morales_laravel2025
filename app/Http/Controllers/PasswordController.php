@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usersinfo;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Notifications\ChangePasswordNotification;
 
 class PasswordController extends Controller
 {
@@ -26,6 +27,7 @@ class PasswordController extends Controller
     
         $user->password = Hash::make($request->new_password);
         $user->save();
+        $user->notify(new ChangePasswordNotification());
     
         return back()->with('success', 'Password updated successfully!');
     }

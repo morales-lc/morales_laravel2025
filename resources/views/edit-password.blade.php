@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
+
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -47,8 +52,7 @@
                             <div class="mb-3">
                                 <label for="old_password" class="form-label">Old Password</label>
                                 <input type="password" id="old_password" name="old_password"
-                                    class="form-control form-control-md @error('old_password') is-invalid @enderror"
-                                    >
+                                    class="form-control form-control-md @error('old_password') is-invalid @enderror">
                                 @error('old_password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -56,8 +60,7 @@
                             <div class="mb-3">
                                 <label for="new_password" class="form-label">New Password</label>
                                 <input type="password" id="new_password" name="new_password"
-                                    class="form-control form-control-md @error('new_password') is-invalid @enderror"
-                                    >
+                                    class="form-control form-control-md @error('new_password') is-invalid @enderror">
                                 @error('new_password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -65,8 +68,7 @@
                             <div class="mb-3">
                                 <label for="confirm_password" class="form-label">Confirm New Password</label>
                                 <input type="password" id="confirm_password" name="confirm_password"
-                                    class="form-control form-control-md @error('confirm_password') is-invalid @enderror"
-                                    >
+                                    class="form-control form-control-md @error('confirm_password') is-invalid @enderror">
                                 @error('confirm_password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

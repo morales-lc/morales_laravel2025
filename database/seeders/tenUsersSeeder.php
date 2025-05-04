@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -10,9 +9,6 @@ use Illuminate\Support\Str;
 
 class tenUsersSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $users = [
@@ -29,6 +25,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -43,6 +41,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -57,6 +57,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -71,6 +73,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -85,6 +89,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -99,6 +105,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -113,6 +121,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -127,6 +137,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -141,6 +153,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
             [
                 'id' => Str::uuid(),
@@ -155,10 +169,11 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'email_verified_at' => null,
+                'verification_token' => Str::random(32),
             ],
         ];
 
         DB::table('usersinfo')->insert($users);
     }
 }
-

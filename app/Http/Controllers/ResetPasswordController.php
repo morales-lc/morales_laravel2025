@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usersinfo;
+use App\Notifications\ResetForgottenPasswordNotification;
+
 
 class ResetPasswordController extends Controller
 {
@@ -34,6 +36,9 @@ class ResetPasswordController extends Controller
         $user = Usersinfo::where('email', $request->email)->first();
         $user->password = Hash::make($request->password);
         $user->save();
+
+        // Send notification
+        $user->notify(new ResetForgottenPasswordNotification());
 
         DB::table('password_resets')->where('email', $request->email)->delete();
 

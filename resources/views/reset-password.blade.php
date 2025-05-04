@@ -58,11 +58,12 @@
                 {{ $errors->first() }}
             </div>
         @endif
+        
 
-        <form method="POST" action="{{ route('password.update') }}">
+        <form method="POST" action="{{ route('password.change') }}">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
-
+        
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" name="email" class="form-control" value="{{ old('email') }}" >
