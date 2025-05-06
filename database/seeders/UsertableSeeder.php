@@ -47,6 +47,8 @@ class UsertableSeeder extends Seeder
                 'updated_at' => now(),
                 'email_verified_at' => null,
                 'verification_token' => Str::random(32),
+                
+                
 
 
                 

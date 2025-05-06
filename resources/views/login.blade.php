@@ -30,9 +30,13 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
-        <p class="text-center mt-3">
-            <a href="{{ route('password.request') }}">Forgot Password?</a>
-        </p>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="{{ route('password.request') }}" class="mx-3">Forgot Password?</a>
+            <a href="{{ route('verify.email.form') }}" class="mx-3">Verify Your Email</a>
+        </div>
+
+
+
 
         <p class="text-center mt-3">
             <a href="{{ route('register') }}">Don't have an account? Register</a>
