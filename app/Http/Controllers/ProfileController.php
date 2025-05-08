@@ -10,25 +10,25 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-        return view('edit-profile');
+        return view('edit-profile'); // Return the view for editing the profile
     }
 
     public function update(UpdateProfileRequest $request)
     {
-        $user = Usersinfo::find(session('user')->id);
+        $user = Usersinfo::find(session('user')->id); // Find the currently logged-in user by session ID
 
-        if ($user) {
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->username = $request->username;
-            $user->save();
+        if ($user) { // Check if the user exists
+            $user->first_name = $request->first_name; // Update the first name
+            $user->last_name = $request->last_name; // Update the last name
+            $user->username = $request->username; // Update the username
+            $user->save(); // Save the updated user information
     
-            session(['user' => $user]);
+            session(['user' => $user]); // Update the session with the new user data
     
-            return back()->with('success', 'Profile updated successfully!');
+            return back()->with('success', 'Profile updated successfully!'); // Redirect back with a success message
         }
     
-        return back()->withErrors(['user' => 'User not found.']);
+        return back()->withErrors(['user' => 'User not found.']); // Return an error if the user is not found
     }
 }
 

@@ -11,43 +11,40 @@ class RegisterUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return true; // Allow all users to make this request
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'firstname' => 'required|string|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
-            'lastname' => 'required|string|max:50|regex:/^[a-zA-Z\s\'\-]+$/',
-            'bod' => 'required|date',
-            'sex' => 'required|in:Male,Female',
-            'email' => 'required|email|unique:usersinfo,email',
-            'username' => 'required|string|unique:usersinfo,username',
-            'password' => 'required|string|min:8',
-            'terms' => 'accepted',
+            'firstname' => 'required|string|max:50|regex:/^[a-zA-Z\s\'\-]+$/', // Validate first name with regex for letters, spaces, hyphens, and apostrophes
+            'lastname' => 'required|string|max:50|regex:/^[a-zA-Z\s\'\-]+$/', // Validate last name with regex for letters, spaces, hyphens, and apostrophes
+            'bod' => 'required|date', // Ensure the birthday is a valid date
+            'sex' => 'required|in:Male,Female', // Ensure the sex is either 'Male' or 'Female'
+            'email' => 'required|email|unique:usersinfo,email', // Validate email and ensure it is unique in the usersinfo table
+            'username' => 'required|string|unique:usersinfo,username', // Validate username and ensure it is unique in the usersinfo table
+            'password' => 'required|string|min:8', // Ensure the password is at least 8 characters long
+            'terms' => 'accepted', // Ensure the terms and conditions are accepted
         ];
     }
 
     public function messages(): array
     {
         return [
-            'firstname.regex' => 'The first name may only contain letters, spaces, hyphens, and apostrophes.',
-            'lastname.regex' => 'The last name may only contain letters, spaces, hyphens, and apostrophes.',
+            'firstname.regex' => 'The first name may only contain letters, spaces, hyphens, and apostrophes.', // Custom error message for invalid first name
+            'lastname.regex' => 'The last name may only contain letters, spaces, hyphens, and apostrophes.', // Custom error message for invalid last name
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'firstname' => ucwords(strtolower(trim($this->firstname))),
-            'lastname' => ucwords(strtolower(trim($this->lastname))),
-            'username' => trim($this->username),
+            'firstname' => ucwords(strtolower(trim($this->firstname))), // Normalize the first name (trim, lowercase, and capitalize)
+            'lastname' => ucwords(strtolower(trim($this->lastname))), // Normalize the last name (trim, lowercase, and capitalize)
+            'username' => trim($this->username), // Trim whitespace from the username
         ]);
     }
-    
 }

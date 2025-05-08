@@ -13,7 +13,7 @@ use App\Http\Controllers\ResetPasswordController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 
@@ -40,20 +40,12 @@ Route::get('/dashboard', function (){
     return view('dashboard');
 })->name('dashboard');
 
-// Route::get('/register', function () {
-//     return view('registration');
-// })->name('register');
 
-//REGISTRATION CONTROLLER --  TODO: MOVE TO A CONTROLLER FOR A BETTER CODE AYAW KALIMTA.
+
+//REGISTRATION CONTROLLER 
 
 Route::post('/register', [RegistrationController:: class, 'save'])->name('register.save');
 
-// Route::post('/register', function (Request $request) {
-//     // not including password
-//     $data = $request->except('password');
-
-//     return view('registration-success', ['data' => $data]);
-// });
 
 
 //Controller for editing name and username
@@ -82,16 +74,16 @@ Route::middleware([])->group(function () {
 });
 
 
-
+//Route for verify my email
 Route::get('/verify-email/{token}', [AuthController::class, 'verifyEmail'])->name('verify.email');
 
 
 
-
+//Routes for forgot password
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
 
 
-
+// Routes for password reset
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.change');

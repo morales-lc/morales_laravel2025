@@ -20,19 +20,11 @@
             color: white !important;
         }
 
-        .logout-btn {
-            background-color: #2973B2;
-            border-color: #2973B2;
-        }
+        .logout-btn {background-color: #2973B2; border-color: #2973B2;}
 
-        .logout-btn:hover {
-            background-color: #9ACBD0;
-            border-color: #9ACBD0;
-        }
+        .logout-btn:hover {background-color: #9ACBD0; border-color: #9ACBD0;}
 
-        .container {
-            margin-top: 20px;
-        }
+        .container { margin-top: 20px;}
     </style>
     
 </head>
