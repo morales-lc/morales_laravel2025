@@ -36,6 +36,7 @@
     .nav-link:hover::after {
         width: 100%;
     }
+    
 
     .logout-btn {
         background-color: #2973B2;
@@ -77,6 +78,9 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('password.edit') }}">Change Password</a></li>
                 @if(session('user') && session('user')->user_type === 'Admin')
                     <li class="nav-item"><a class="nav-link" href="{{ route('user.list') }}">Users</a></li>
+                @endif
+                @if(session('user') && session('user')->user_type === 'Admin')
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}">Reports</a></li>
                 @endif
             </ul>
         </div>
