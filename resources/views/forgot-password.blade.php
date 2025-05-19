@@ -6,7 +6,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="container mt-5">
+<div class="container">
     <h3 class="text-center mb-4">Forgot Password</h3>
 
     @if (session('success'))

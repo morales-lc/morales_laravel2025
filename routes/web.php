@@ -71,7 +71,6 @@ Route::post('/edit-password', [PasswordController::class, 'update'])->name('pass
 
 //Controller route for display user
 Route::get('/users', [UserController::class, 'index'])->name('user.list');
-
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
 
@@ -90,7 +89,7 @@ Route::get('/verify-email/{token}', [AuthController::class, 'verifyEmail'])->nam
 
 
 
-// View to enter email for verification// verification for email
+// routes for "verify my email" in login, functionality
 Route::get('/verify-email', [EmailVerificationController::class, 'showVerificationForm'])->name('verify.email.form');
 Route::post('/verify-email', [EmailVerificationController::class, 'sendVerificationEmail'])->name('verify.email.send');
 Route::get('/verify-email-token/{token}', [EmailVerificationController::class, 'verifyToken'])->name('verify.email.token');
@@ -102,7 +101,7 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'showRequestFor
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
 
 
-
+//the route for when link is clicked in the email for forgotten password reset
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.change');
 
