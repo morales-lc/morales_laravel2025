@@ -1,8 +1,4 @@
 <style>
-    body {
-        background-color: #F2EFE7;
-    }
-
     .navbar {
         background-color: #48A6A7;
     }
@@ -36,19 +32,19 @@
     .nav-link:hover::after {
         width: 100%;
     }
-    
+
 
     .logout-btn {
-        background-color: #2973B2;
-        border-color: #2973B2;
+        background-color: #dc3545 !important;
+        border-color: #dc3545 !important;
         color: white !important;
         margin-left: 10px;
         transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     }
 
     .logout-btn:hover {
-        background-color: #9ACBD0;
-        border-color: #9ACBD0;
+        background-color: #b52a37 !important;
+        border-color: #b52a37 !important;
         color: white !important;
         transform: scale(1.1);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -65,17 +61,17 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+        <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
             aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
         <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav me-auto">
-
+           
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 <li class="nav-item"><a class="nav-link" href="{{ route('settings') }}">Settings</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('upload.index') }}">Uploaded Files</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('profile.edit') }}">Edit Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('password.edit') }}">Change Password</a></li>
+
                 @if(session('user') && session('user')->user_type === 'Admin')
                     <li class="nav-item"><a class="nav-link" href="{{ route('user.list') }}">Users</a></li>
                 @endif
@@ -83,9 +79,14 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}">Reports</a></li>
                 @endif
             </ul>
+
         </div>
-        <div class="d-flex">
-            <a class="btn logout-btn" href="{{ route('login') }}">Logout</a>
+        <div class="d-flex ms-auto">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn logout-btn btn-danger px-4">Logout</button>
+            </form>
         </div>
     </div>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

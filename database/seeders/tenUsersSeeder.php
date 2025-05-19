@@ -25,8 +25,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'email_verified_at' => null,
-                'verification_token' => Str::random(32),
+                'email_verified_at' => now(), // Admin: already verified
+                'verification_token' => null, // Admin: no token needed
             ],
             [
                 'id' => Str::uuid(),
@@ -73,8 +73,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'email_verified_at' => null,
-                'verification_token' => Str::random(32),
+                'email_verified_at' => now(), // Admin: already verified
+                'verification_token' => null, // Admin: no token needed
             ],
             [
                 'id' => Str::uuid(),
@@ -121,8 +121,8 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'email_verified_at' => null,
-                'verification_token' => Str::random(32),
+                'email_verified_at' => now(), // Admin: already verified
+                'verification_token' => null, // Admin: no token needed
             ],
             [
                 'id' => Str::uuid(),
@@ -169,10 +169,19 @@ class tenUsersSeeder extends Seeder
                 'user_type' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'email_verified_at' => null,
-                'verification_token' => Str::random(32),
+                'email_verified_at' => now(), // Admin: already verified
+                'verification_token' => null, // Admin: no token needed
             ],
         ];
+
+        // Mark all Admins as verified, Customers as not
+        foreach ($users as &$user) {
+            if ($user['user_type'] === 'Admin') {
+                $user['email_verified_at'] = now();
+                $user['verification_token'] = null;
+            }
+        }
+        unset($user);
 
         DB::table('usersinfo')->insert($users);
     }

@@ -7,51 +7,90 @@
     <title>Login</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #eaf6f6 0%, #48A6A7 100%) !important;
+        }
+
+        .card {
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(72, 166, 167, 0.12);
+            background: #fff;
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-top: 48px;
+        }
+
+        .btn-primary {
+            background-color: #48A6A7;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3D9394;
+        }
+
+        h2 {
+            color: #2973B2;
+            font-weight: 700;
+        }
+
+        a {
+            color: #48A6A7;
+        }
+
+        a:hover {
+            color: #2973B2;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="card">
-        <h2 class="text-center mb-4">Login</h2>
+    <div class="d-flex justify-content-center align-items-center" style="min-height:100vh;">
+        <div class="card">
+            <h2 class="text-center mb-4">Login</h2>
 
-        @if (session('success'))
+            @if (session('success'))
             <div class="alert alert-success text-center">
                 {{ session('success') }}
             </div>
-        @endif
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" id="username" value="{{ old('username') }}">
+            @endif
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" id="username"
+                        value="{{ old('username') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <div class="d-flex justify-content-center mt-3">
+                <a href="{{ route('password.request') }}" class="mx-3">Forgot Password?</a>
+                <a href="{{ route('verify.email.form') }}" class="mx-3">Verify Your Email</a>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password">
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-        </form>
-        <div class="d-flex justify-content-center mt-3">
-            <a href="{{ route('password.request') }}" class="mx-3">Forgot Password?</a>
-            <a href="{{ route('verify.email.form') }}" class="mx-3">Verify Your Email</a>
-        </div>
 
 
 
 
-        <p class="text-center mt-3">
-            <a href="{{ route('register') }}">Don't have an account? Register</a>
-        </p>
-        @if($errors->any())
+            <p class="text-center mt-3">
+                <a href="{{ route('register') }}">Don't have an account? Register</a>
+            </p>
+            @if($errors->any())
             <div class="mt-3">
                 @if ($errors->has('email'))
-                    <div class="alert alert-warning text-center">
-                        {{ $errors->first('email') }}
-                    </div>
+                <div class="alert alert-warning text-center">
+                    {{ $errors->first('email') }}
+                </div>
                 @else
-                    <div class="alert alert-warning text-danger text-center">{{ $errors->first() }}</div>
+                <div class="alert alert-warning text-danger text-center">{{ $errors->first() }}</div>
                 @endif
             </div>
-        @endif
+            @endif
+        </div>
     </div>
 </body>
 

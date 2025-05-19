@@ -7,11 +7,72 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
+        body {
+            background: linear-gradient(135deg, #eaf6f6 0%, #48A6A7 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(72, 166, 167, 0.12);
+            padding: 32px 32px 24px 32px;
+        }
+
+        .btn-primary {
+            background-color: #48A6A7;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3D9394;
+        }
+
+        .btn-outline-secondary {
+            border-color: #48A6A7;
+            color: #48A6A7;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #48A6A7;
+            color: #fff;
+        }
+
         .filter-card {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
+            background-color: #eaf6f6;
+            border: 1px solid #48A6A7;
+            border-radius: 12px;
             padding: 1rem;
+        }
+
+        .form-label {
+            color: #2973B2;
+            font-weight: 500;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #48A6A7;
+            box-shadow: 0 0 0 0.2rem rgba(72, 166, 167, 0.25);
+        }
+
+        .table-primary {
+            background-color: #48A6A7 !important;
+            color: #fff !important;
+        }
+
+        h2 {
+            color: #2973B2;
+            font-weight: 700;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -26,7 +87,7 @@
         </div>
 
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
         <div class="filter-card mb-4">
@@ -60,32 +121,32 @@
                 <thead class=" table-primary text-center">
                     <tr>
                         <th>Filename</th>
-                        <th>Type</th>
+                        <th style="width: 18%;">Type</th>
                         <th>Uploaded</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($uploads as $upload)
-                        <tr>
-                            <td>{{ $upload->original_filename }}</td>
-                            <td>{{ $upload->type }}</td>
-                            <td>{{ $upload->created_at->format('Y-m-d H:i') }}</td>
-                            <td>
-                                <a href="{{ route('upload.download', $upload) }}"
-                                    class="btn btn-sm btn-success me-1">Download</a>
-                                <form action="{{ route('upload.destroy', $upload) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Are you sure?')"
-                                        class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>{{ $upload->original_filename }}</td>
+                        <td style="width: 18%;">{{ $upload->type }}</td>
+                        <td>{{ $upload->created_at->format('Y-m-d H:i') }}</td>
+                        <td>
+                            <a href="{{ route('upload.download', $upload) }}" class="btn btn-sm btn-success me-1">Download</a>
+                            <a href="{{ route('upload.edit', $upload) }}" class="btn btn-sm btn-warning me-1">Update</a>
+                            <form action="{{ route('upload.destroy', $upload) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure?')"
+                                    class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="4" class="text-center text-muted">No uploaded files found.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">No uploaded files found.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

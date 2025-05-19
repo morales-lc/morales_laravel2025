@@ -68,4 +68,35 @@ class UploadController extends Controller
 
         return back()->with('success', 'File deleted successfully.');
     }
+
+    public function edit(Upload $upload)
+    {
+        if ($upload->uploaded_by !== session('user')->id) {
+            abort(403);
+        }
+        return view('edit-upload', compact('upload'));
+    }
+
+    public function update(Request $request, Upload $upload)
+    {
+        if ($upload->uploaded_by !== session('user')->id) {
+            abort(403);
+        }
+        $request->validate([
+            'file' => 'required|file|mimes:pdf,png,jpeg,jpg,docx,txt|max:10240',
+        ]);
+        // Delete old file
+        \Storage::disk('public')->delete('uploads/' . $upload->filename);
+        // Store new file
+        $file = $request->file('file');
+        $hashedName = $file->hashName();
+        $file->storeAs('uploads', $hashedName, 'public');
+        // Update DB
+        $upload->update([
+            'original_filename' => $file->getClientOriginalName(),
+            'filename' => $hashedName,
+            'type' => $file->getClientMimeType(),
+        ]);
+        return redirect()->route('upload.index')->with('success', 'File updated successfully.');
+    }
 }

@@ -15,6 +15,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        
+
         .reset-card {
             background: white;
             padding: 2rem;
