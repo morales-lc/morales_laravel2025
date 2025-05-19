@@ -28,7 +28,7 @@ class RegisterUserRequest extends FormRequest
             'sex' => 'required|in:Male,Female',
             'email' => 'required|email|unique:usersinfo,email',
             'username' => 'required|string|unique:usersinfo,username',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
             'terms' => 'accepted',
         ];
     }

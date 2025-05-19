@@ -51,4 +51,10 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Email verified! You can now log in.');
     }
 
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect()->route('login')->with('success', 'You have been logged out.');
+    }
+
 }

@@ -9,6 +9,69 @@
     <link rel="stylesheet" href="css/registration.css">
 
     <style>
+        body {
+            background: linear-gradient(135deg, #48A6A7 0%, #3D9394 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(72, 166, 167, 0.2);
+            border: none;
+            margin-top: 40px;
+        }
+
+        .btn-primary {
+            background-color: #48A6A7;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3D9394;
+        }
+
+        .btn-secondary {
+            background-color: #3D9394;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2973B2;
+        }
+
+        .form-label {
+            color: #2973B2;
+            font-weight: 500;
+        }
+
+        .form-control:focus {
+            border-color: #48A6A7;
+            box-shadow: 0 0 0 0.2rem rgba(72, 166, 167, 0.25);
+        }
+
+        .invalid-feedback {
+            color: #dc3545;
+        }
+
+        .card h2 {
+            color: #48A6A7;
+            font-weight: 700;
+        }
+
+        .form-check-label {
+            color: #3D9394;
+        }
+
+        .navbar-brand {
+            color: #48A6A7 !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
         #password-strength {
             font-size: 0.9rem;
         }
@@ -112,6 +175,14 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="password_confirmation" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                                id="password_confirmation" name="password_confirmation">
+                            @error('password_confirmation')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input @error('terms') is-invalid @enderror"
                                 id="terms" name="terms" {{ old('terms') ? 'checked' : '' }}>
@@ -134,6 +205,20 @@
         </div>
     </div>
     <script src="{{ asset('js/password-strength.js') }}"></script>
+    <script>
+        // Password match indicator
+        const password = document.getElementById('password');
+        const confirm = document.getElementById('password_confirmation');
+        if (password && confirm) {
+            confirm.addEventListener('input', function() {
+                if (confirm.value !== password.value) {
+                    confirm.classList.add('is-invalid');
+                } else {
+                    confirm.classList.remove('is-invalid');
+                }
+            });
+        }
+    </script>
 
 </body>
 
