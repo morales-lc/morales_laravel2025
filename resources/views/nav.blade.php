@@ -33,6 +33,12 @@
         width: 100%;
     }
 
+    .nav-link.active {
+        background-color: #2973B2 !important;
+        color: #fff !important;
+        font-weight: 700;
+    }
+
 
     .logout-btn {
         background-color: #dc3545 !important;
@@ -69,14 +75,22 @@
         <div class="collapse navbar-collapse" id="navbarMenu">
            
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                 <li class="nav-item"><a class="nav-link" href="{{ route('settings') }}">Settings</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('upload.index') }}">Uploaded Files</a></li>
+                <li class="nav-item">
+                    <a class="nav-link{{ request()->routeIs('settings') ? ' active' : '' }}" href="{{ route('settings') }}">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{{ request()->routeIs('upload.index') ? ' active' : '' }}" href="{{ route('upload.index') }}">Uploaded Files</a>
+                </li>
 
                 @if(session('user') && session('user')->user_type === 'Admin')
-                    <li class="nav-item"><a class="nav-link" href="{{ route('user.list') }}">Users</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link{{ request()->routeIs('user.list') ? ' active' : '' }}" href="{{ route('user.list') }}">Users</a>
+                    </li>
                 @endif
                 @if(session('user') && session('user')->user_type === 'Admin')
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}">Reports</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link{{ request()->routeIs('admin.reports') ? ' active' : '' }}" href="{{ route('admin.reports') }}">Reports</a>
+                    </li>
                 @endif
             </ul>
 
