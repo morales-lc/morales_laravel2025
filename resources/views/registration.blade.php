@@ -195,7 +195,8 @@
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Register</button>
                         <br><br>
-                        <a href="{{ route('login') }}" class="btn btn-secondary w-100">Go Back</a>
+                        <button type="button" class="btn btn-secondary w-100" onclick="window.history.back()">Go Back
+                        </button>
                     </form>
 
                 </div>

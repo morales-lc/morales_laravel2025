@@ -46,7 +46,7 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" >
             </div>
             <button class="btn btn-primary w-100">Send Verification Email</button>
         </form>
