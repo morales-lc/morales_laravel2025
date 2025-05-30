@@ -7,10 +7,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usersinfo;
 use App\Models\Upload;
-use DB;
+use Illuminate\Support\Facades\DB;
 
+// Controller for generating and providing data for system reports and analytics.
 class ReportController extends Controller
 {
+    // Gathers statistics for file types, user registrations, birth years, and uploads.
+    // Prepares data for charts and passes it to the reports view.
     public function index()
     {
         $fileTypes = Upload::select('type', DB::raw('count(*) as count'))

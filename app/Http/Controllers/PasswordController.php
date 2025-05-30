@@ -8,9 +8,10 @@ use App\Models\Usersinfo;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Notifications\ChangePasswordNotification;
 
+// Controller for allowing users to change their password while logged in.
 class PasswordController extends Controller
 {
-    //
+    // Shows change password form and updates the password.
 
     public function edit()
     {

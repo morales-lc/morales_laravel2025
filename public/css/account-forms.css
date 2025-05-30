@@ -1,0 +1,67 @@
+/* Combined styles for edit-profile, edit-password, and edit-upload views */
+body {
+    background: linear-gradient(135deg, #eaf6f6 0%, #48A6A7 100%);
+    min-height: 100vh;
+}
+.container {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(72, 166, 167, 0.12);
+    padding: 32px 32px 24px 32px;
+    margin-top: 48px;
+    max-width: 450px;
+}
+.card, .card.shadow, .card.shadow-sm {
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(72, 166, 167, 0.12);
+    border: none;
+}
+.card-header, .card-header.bg-primary {
+    background: #48A6A7 !important;
+    color: #fff;
+    border-radius: 18px 18px 0 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.btn-primary {
+    background-color: #48A6A7;
+    border: none;
+    transition: background 0.3s;
+}
+.btn-primary:hover {
+    background-color: #3D9394;
+}
+.btn-secondary {
+    background-color: #3D9394;
+    border: none;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #2973B2;
+}
+.btn-outline-secondary {
+    border-color: #48A6A7;
+    color: #48A6A7;
+}
+.btn-outline-secondary:hover {
+    background-color: #48A6A7;
+    color: #fff;
+}
+.form-label {
+    color: #2973B2;
+    font-weight: 500;
+}
+.form-control:focus {
+    border-color: #48A6A7;
+    box-shadow: 0 0 0 0.2rem rgba(72, 166, 167, 0.25);
+}
+.invalid-feedback, .text-danger {
+    color: #dc3545;
+}
+.toast {
+    border-radius: 10px;
+}
+h2, .card-header {
+    color: #2973B2;
+    font-weight: 700;
+}

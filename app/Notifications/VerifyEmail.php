@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// Notification for sending verification emails to users (alternative or legacy implementation).
+// Used by: RegistrationController, EmailVerificationController, etc.
 class VerifyEmail extends Notification
 {
     use Queueable;

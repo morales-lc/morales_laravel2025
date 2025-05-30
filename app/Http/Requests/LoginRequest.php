@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Handles validation for user login form (username and password).
 class LoginRequest extends FormRequest
 {
     public function authorize(): bool

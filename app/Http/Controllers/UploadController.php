@@ -7,8 +7,11 @@ use App\Models\Upload;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+// Controller for managing file uploads, downloads, updates, and deletions for users.
 class UploadController extends Controller
 {
+    // Handles file upload, listing, download, update, and delete actions.
+    // Ensures users can only manage their own files.
     public function create()
     {
         return view('upload');
@@ -54,7 +57,8 @@ class UploadController extends Controller
             abort(403);
         }
 
-        return Storage::disk('public')->download('uploads/' . $upload->filename, $upload->original_filename);
+        $path = Storage::disk('public')->path('uploads/' . $upload->filename);
+        return response()->download($path, $upload->original_filename);
     }
 
     public function destroy(Upload $upload)
@@ -86,7 +90,7 @@ class UploadController extends Controller
             'file' => 'required|file|mimes:pdf,png,jpeg,jpg,docx,txt|max:10240',
         ]);
         // Delete old file
-        \Storage::disk('public')->delete('uploads/' . $upload->filename);
+        Storage::disk('public')->delete('uploads/' . $upload->filename);
         // Store new file
         $file = $request->file('file');
         $hashedName = $file->hashName();

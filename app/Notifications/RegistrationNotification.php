@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// Notification for sending registration-related notifications (e.g., welcome messages).
+// Used by: RegistrationController or custom registration flows.
 class RegistrationNotification extends Notification
 {
     use Queueable;

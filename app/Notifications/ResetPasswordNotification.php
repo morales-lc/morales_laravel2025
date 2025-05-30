@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// Notification for sending password reset confirmation to users after a successful password change.
+// Used by: ResetPasswordController, PasswordController, etc.
 class ResetPasswordNotification extends Notification
 {
     use Queueable;

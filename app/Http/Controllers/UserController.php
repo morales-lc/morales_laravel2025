@@ -12,9 +12,10 @@ use App\Models\Upload;
 use Carbon\Carbon;
 
 
+// Admin controller for managing user accounts and exporting user data.
 class UserController extends Controller
 {
-    //
+    // Lists users, deletes users (admin only), and exports user data.
     public function index(Request $request)
     {
         $currentUser = session('user');

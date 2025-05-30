@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Handles validation for updating user password (old, new, confirm password).
 class UpdatePasswordRequest extends FormRequest
 {
     public function authorize(): bool

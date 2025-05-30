@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Facades\DB;
+
+// Controller for handling the process for users who forgot their password.
 class ForgotPasswordController extends Controller
 {
-    //
+    // Shows forgot password form and sends reset links.
 
     public function showRequestForm()
     {

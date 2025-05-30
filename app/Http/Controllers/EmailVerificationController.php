@@ -9,8 +9,10 @@ use Illuminate\Support\Str;
 use App\Models\Usersinfo;
 use App\Notifications\EmailVerificationNotification;
 
+// Controller for managing email verification for user accounts.
 class EmailVerificationController extends Controller
 {
+    // Shows verification form, sends verification emails, and verifies tokens.
     public function showVerificationForm()
     {
         return view('verify-request');

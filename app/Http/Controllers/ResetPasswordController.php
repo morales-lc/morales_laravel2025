@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Usersinfo;
 use App\Notifications\ResetForgottenPasswordNotification;
 
-
+// Controller for handling password reset via email token for users who forgot their password.
 class ResetPasswordController extends Controller
 {
+    // Shows reset form, validates tokens, and updates passwords.
     public function showResetForm($token)
     {
         return view('reset-password', ['token' => $token]);

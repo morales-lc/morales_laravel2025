@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Handles validation for file upload requests (multiple files, type, and size).
 class UploadFileRequest extends FormRequest
 {
     public function authorize(): bool

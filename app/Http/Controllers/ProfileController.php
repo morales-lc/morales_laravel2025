@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Usersinfo;
 use App\Http\Requests\UpdateProfileRequest;
 
+// Controller for managing user profile editing and updating.
 class ProfileController extends Controller
 {
+    // Shows edit profile form and updates user details.
     public function edit()
     {
         return view('edit-profile');

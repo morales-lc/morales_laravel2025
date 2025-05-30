@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// Notification for sending change password confirmation to users after they update their password.
+// Used by: PasswordController, ProfileController, etc.
 class ChangePasswordNotification extends Notification
 {
     

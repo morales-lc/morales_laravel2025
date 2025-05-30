@@ -7,6 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// Notification for sending password reset links to users who forgot their password.
+// Contains logic for building and sending the reset email with a unique token.
+// Used by: ForgotPasswordController, ResetPasswordController, etc.
 class ResetForgottenPasswordNotification extends Notification
 {
     

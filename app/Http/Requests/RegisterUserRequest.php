@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Handles validation for user registration form, including name, username, email, password, and terms.
 class RegisterUserRequest extends FormRequest
 {
     /**

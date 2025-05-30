@@ -7,6 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+// Notification for sending email verification links to users after registration or on request.
+// Contains logic for building and sending the verification email with a unique token.
+// Used by: RegistrationController, EmailVerificationController, etc.
 class EmailVerificationNotification extends Notification
 {
     use Queueable;
